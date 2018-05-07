@@ -30,9 +30,19 @@
 					pageList: [30,50,100],
 					pagination : true,
 					toolbar : toolbar,
-					url : "../../data/standard.json",
+					url : "../../standard_findByPage.action",
 					idField : 'id',
 					columns : columns
+				});
+				// 对收派标准 save按钮，添加click事件
+				$("#save").click(function(){
+					// 判断是否form中所有表单对象 都是通过校验 
+					if($("#standardForm").form('validate')){
+						// 通过校验 
+						$("#standardForm").submit();
+					}else{
+						$.messager.alert("警告","表单中还存在需要一些非法内容","warning");						
+					}
 				});
 			});	
 			
@@ -42,14 +52,23 @@
 				text : '增加',
 				iconCls : 'icon-add',
 				handler : function(){
-					alert('增加');
+					$('#standardWindow').window('open'); // open a window 
+							$.messager.alert("警告","表单中还存在需要一些非法内容","warning");		
+
 				}
 			}, {
 				id : 'button-edit',
 				text : '修改',
 				iconCls : 'icon-edit',
 				handler : function(){
-					alert('修改');
+					var rows= $('#grid').datagrid('getSelections');
+					if(rows.length != 1){
+						$.messager.alert("警告","修改时只能同时对一个数据进行修改","warning");		
+					}else{
+						var row=rows[0];
+						$('#standardForm').form('load',row);
+						$('#standardWindow').window('open'); 
+					}
 				}
 			},{
 				id : 'button-delete',
@@ -129,7 +148,8 @@
 
 			<div region="center" style="overflow:auto;padding:5px;" border="false">
 				
-				<form>
+				<form id="standardForm" 
+					action="../../standard_save.action" method="post">
 					<table class="table-edit" width="80%" align="center">
 						<tr class="title">
 							<td colspan="2">收派标准信息
