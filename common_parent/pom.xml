@@ -153,11 +153,7 @@
 		</dependency>
 
 		<!-- oracle数据库驱动，需要手动安装  -->
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>11.2.0.1.0</version>
-		</dependency>
+	
 
 		<!-- Excel解析工具类  -->
 		<dependency>
@@ -248,10 +244,17 @@
 			<artifactId>struts2-json-plugin</artifactId>
 			<version>2.3.24</version>
 		</dependency>
+
+
 		<dependency>
 			<groupId>pinyin4j</groupId>
 			<artifactId>pinyin4j</artifactId>
 			<version>2.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.1.0</version>
 		</dependency>
 	</dependencies>
 
